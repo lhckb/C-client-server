@@ -11,8 +11,6 @@
  * 
 */
 
-// use setsockopt to reuse a port
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/socket.h>
@@ -24,7 +22,6 @@
 #include <string.h>
 
 #define QUEUE_SIZE 10
-#define MAX_MSG_BYTES 1024
 
 int main(void) {
 

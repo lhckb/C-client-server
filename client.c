@@ -20,8 +20,6 @@
 #include <unistd.h>
 #include <string.h>
 
-#define MAX_MSG_BYTES 1024
-
 int main(int argc, char *argv[]) {
 
   int res;
