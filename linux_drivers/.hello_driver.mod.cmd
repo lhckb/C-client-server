@@ -1,0 +1,1 @@
+cmd_/home/luis/low-level-programming/linux_drivers/hello_driver.mod := { echo  /home/luis/low-level-programming/linux_drivers/hello_driver.o;  echo; } > /home/luis/low-level-programming/linux_drivers/hello_driver.mod

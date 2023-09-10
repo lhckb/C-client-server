@@ -28,8 +28,14 @@ int main(int argc, char *argv[]) {
 
   server_addr.sin_family = AF_INET;
   server_addr.sin_port = htons(PORT);
+  server_addr.sin_addr.s_addr = inet_addr("192.168.100.2");
 
-  char *message = argv[1];
+  // char *message;
+  char message[MAX_MSG_BYTES];
+  strcpy(message, argv[1]);
+  // fprintf(stdout, "Write your message to be sent:\n");
+  // scanf("%s", message);
+  // fprintf(stdout, "%s", message);
 
   int sock_fd = socket(AF_INET, SOCK_STREAM, 0);
   if (sock_fd == -1) {
@@ -46,13 +52,13 @@ int main(int argc, char *argv[]) {
   log_stdout("Connected to server...");
 
   res = send(sock_fd, message, strlen(message), 0);
-  fprintf(stdout, "%s\n%d\n", message, res);
   if (res == -1) {
     fprintf(stderr, "There was a problem sending message to server. Errno = %d\n", errno);
     return EXIT_FAILURE;
   }
+  log_stdout("Message sent.");
 
-  log_stdout("Closing server...");
+  log_stdout("Closing client...");
   close(sock_fd);
 
   return EXIT_SUCCESS;

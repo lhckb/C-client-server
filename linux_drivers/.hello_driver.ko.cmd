@@ -1,0 +1,1 @@
+cmd_/home/luis/low-level-programming/linux_drivers/hello_driver.ko := ld -r -m elf_x86_64 --build-id=sha1  -T scripts/module.lds -o /home/luis/low-level-programming/linux_drivers/hello_driver.ko /home/luis/low-level-programming/linux_drivers/hello_driver.o /home/luis/low-level-programming/linux_drivers/hello_driver.mod.o;  true
