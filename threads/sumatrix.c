@@ -21,7 +21,6 @@ typedef struct routine_params_t routine_params_t;
 void print_matrix(int, int, int **);
 void create_matrix(int, int, int **, bool);
 void *operate_coordinate(void *);
-void *multiply_coordinate(void *);
 void print_errno_to_standard_error();
 void free_matrix(int **, int);
 
