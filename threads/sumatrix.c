@@ -135,7 +135,7 @@ void *operate_coordinate(void *routine_params) {
 
 void print_errno_to_standard_error() {
   fprintf(stderr, "[ERROR] errno %d\n", errno);
-  strerror(errno);
+  strerror(errno);  //todo: fix this - returns a pointer. this call essentially is useless
 }
 
 void free_matrix(int **mat, int lines) {
