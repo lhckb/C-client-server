@@ -30,18 +30,17 @@ void call_exec_par(proc_args args[], int comm_count) {
   for (int i = 0; i < comm_count; i++) {
     pid_t pid = fork();
 
-    if (pid > 0) {
-      // wait(NULL);
-    }
-    else if (pid == 0) {
+    if (pid == 0) {
       if (execvp(args[i].proc_name, args[i].args) == -1) {
         print_errno_to_standard_error();
         exit(EXIT_FAILURE);
       }
       exit(EXIT_SUCCESS);
     }
-    else {
+    else if (pid < 0) {
       print_errno_to_standard_error();
     }
+
+    wait(NULL);
   }
 }
