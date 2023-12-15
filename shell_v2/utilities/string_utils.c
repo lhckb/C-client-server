@@ -47,7 +47,7 @@ void sepparate_command_into_args(char *command, proc_args *arg_struct) {
 }
 
 void remove_line_breaks(char *str) {
-  for (int i = 0; i < strlen(str); i++) {
+  for (int i = 0; i < (int) strlen(str); i++) {
     if (str[i] == '\n' || str[i] == EOF) {
       str[i] = 0;
     }

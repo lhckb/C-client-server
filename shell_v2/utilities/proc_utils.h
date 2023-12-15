@@ -1,6 +1,11 @@
 #ifndef PROC_UTILS_H
 #define PROC_UTILS_H
 
+/**
+ * Struct simplifies what should be passed into execvp
+ * @param proc_name Is the file path to the program (e.g.: /bin/ls)
+ * @param args Is the full string of args to the program including file path
+*/
 struct proc_args {
   char *proc_name;
   char **args;

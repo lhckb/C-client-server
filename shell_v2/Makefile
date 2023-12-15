@@ -1,7 +1,7 @@
 build:
-	gcc -lpthread utilities/string_utils.c utilities/proc_utils.c shell.c -o shell
+	gcc -Wall -Wextra -pedantic -lpthread utilities/string_utils.c utilities/proc_utils.c lsh.c -o lsh -g
 
 clean:
-	rm shell
+	rm lsh
 
 fresh: clean build

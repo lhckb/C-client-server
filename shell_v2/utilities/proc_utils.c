@@ -26,6 +26,7 @@ void call_exec_seq(proc_args args[], int comm_count) {
   }
 }
 
+// TODO: Evaluate if this is really parallel
 void call_exec_par(proc_args args[], int comm_count) {
   for (int i = 0; i < comm_count; i++) {
     pid_t pid = fork();

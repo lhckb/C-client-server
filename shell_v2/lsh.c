@@ -1,3 +1,10 @@
+/*
+ * lsh - Lewis' Shell
+ * @author Luís Cruz - https://github.com/lhckb
+ * 
+ * This is a simplified implementation of a Unix Shell aiming to help me learn how a shell works under the hood.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -10,7 +17,7 @@
 char style[4] = "seq";
 
 int main(void) {
-  proc_args args_struct;
+  // proc_args args_struct;
   proc_args command_list[MAX_INPUT / 2 + 1];
   char general_input[MAX_INPUT + 1];  // +1 accounts for \n at the end
   char *commands[MAX_INPUT / 2 + 1];
