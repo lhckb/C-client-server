@@ -11,61 +11,35 @@ typedef struct node_t {
   struct node_t *next;
 } node_t;
 
-// node_t* init_list() {
-//   node_t new_node;
-//   // new_node.value = NULL;
-//   new_node.next = NULL;
-//   return &new_node;
-// }
-
-// void free_list(node_t* head) {
-//   node_t* pointer = head;
-//   while (pointer->next != NULL) {
-//     node_t* current = pointer;
-//     pointer = pointer->next;
-//     free(current);
-//     fprintf(stdout, "freed memory\n")
-//   }
-//   free(pointer);
-// }
+void free_list(node_t* head) {
+  if (head->next == NULL) {
+    free(head);
+  }
+  else {
+    free_list(head->next);
+  }
+}
 
 void print_list_to_stdout(node_t* head) {
   node_t* pointer = head->next;
-
-  fprintf(stdout, "--------------------\n");
-
-  int i = 0;
-  for (node_t* pointer = head->next; i < 5; pointer = pointer->next) {
-    fprintf(stdout, "%d\n", pointer->value);
-    // pointer = pointer->next;
-    i++;
+  if (pointer != NULL) {
+    fprintf(stdout, "value: %d\n", pointer->value);
+    print_list_to_stdout(head->next);
   }
-
-  fprintf(stdout, "--------------------\n");
 }
 
-int add_value_to_list(node_t* head, int value) {
-  node_t* head_copy
-  node_t new_node;
-  new_node.value = value;
-  new_node.next = NULL;
-
-  node_t* pointer = head;
-  while (pointer != NULL) {
-    if (pointer->next == NULL) {
-      pointer->next = &new_node;
-      fprintf(stdout, "Added value %d to list\n", new_node.value);
-      return 0;
-    }
-
-    pointer = pointer->next;
+void add_value_to_list(node_t* head, int value) {
+  node_t pointer = *head;
+  if (pointer.next == NULL) {
+    node_t* new_node = (node_t*) malloc(sizeof(node_t*));
+    new_node->value = value;
+    new_node->next = NULL;
+    head->next = new_node;
+    fprintf(stdout, "Added value %d to list\n", new_node->value);
   }
-
-  return -1;
-}
-
-void merge_arrays(int array1[], int array2[], int array3[]) {
-  
+  else {
+    add_value_to_list(pointer.next, value);
+  }
 }
 
 int* quicksort(int array[], size_t array_size) {
@@ -97,29 +71,24 @@ int* quicksort(int array[], size_t array_size) {
 int main(void) {
   srand(time(NULL));
 
-  node_t head_node;
-  head_node.next = NULL;
-  head_node.value = '\0';
-
-  // int array[ARR_MAX] = {0};
-  // size_t original_size = sizeof(array) / sizeof(int);
+  node_t* head_node = (node_t*) malloc(sizeof(node_t));
+  head_node->next = NULL;
+  head_node->value = '\0';
 
   int max_list_size = rand() % ARR_MAX;
   fprintf(stderr, "Max list size: %d\n", max_list_size);
+
   for (int i = 0; i < max_list_size; i++) {
-    // array[i] = rand() % RANDOM_MAX;
     int new_value = rand() % RANDOM_MAX;
-    if (add_value_to_list(&head_node, new_value) < 0) {
-      fprintf(stderr, "Error adding value to list\n");
-      exit(EXIT_FAILURE);
-    }
+    add_value_to_list(head_node, new_value);
   }
 
   // quicksort(array, original_size);
-  print_list_to_stdout(&head_node);
+  fprintf(stdout, "--------------------\n");
+  print_list_to_stdout(head_node);
+  fprintf(stdout, "--------------------\n");
 
-  // printf("%d\n", array[0]);
-
-  // free_list(&head_node);
+  free_list(head_node);
+  free(head_node);
   exit(EXIT_SUCCESS);
 }
