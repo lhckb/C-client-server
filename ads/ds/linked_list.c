@@ -42,32 +42,6 @@ void add_value_to_list(node_t* head, int value) {
   }
 }
 
-int* quicksort(int array[], size_t array_size) {
-  if (array_size < 2) {
-    return array;
-  }
-  else {
-    int pivot = array[0];
-    int smaller_or_equal[ARR_MAX] = {0};
-    int larger[ARR_MAX] = {0};
-
-    int i = 0, j = 0, k = 0;
-    for ( ; i < array_size; i++) {
-      if (array[i] <= pivot) {
-        smaller_or_equal[j] = array[i];
-        ++j;
-      }
-      else {
-        larger[k] = array[i];
-        ++k;
-      }
-    }
-
-    memset(&smaller_or_equal[j], '\0', (ARR_MAX - j) * sizeof(int));
-    memset(&larger[k],           '\0', (ARR_MAX - k) * sizeof(int));
-  }
-}
-
 int main(void) {
   srand(time(NULL));
 
@@ -83,7 +57,6 @@ int main(void) {
     add_value_to_list(head_node, new_value);
   }
 
-  // quicksort(array, original_size);
   fprintf(stdout, "--------------------\n");
   print_list_to_stdout(head_node);
   fprintf(stdout, "--------------------\n");
